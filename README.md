@@ -23,16 +23,8 @@ If you’re interested in a custom design or need help implementing these templa
 ## Contact Me
 For collaboration, inquiries, or support, reach out to me directly:
 
-- Email:
-  ```
-  arpitramesan777@gmail.com
-```
-- LinkedIn:
-```
-https://www.linkedin.com/in/arpitramesan/
-```
-- Instagram:
-```
-https://www.instagram.com/arpitrofficial/
-```
+- Email: arpitramesan777@gmail.com
+- LinkedIn: https://www.linkedin.com/in/arpitramesan/
+- Instagram: https://www.instagram.com/arpitrofficial/
+  
 Thank you for considering the Webpage Catalogue. I look forward to helping you create an outstanding online presence!
