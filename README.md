@@ -27,4 +27,5 @@ For collaboration, inquiries, or support, reach out to me directly:
 - LinkedIn: https://www.linkedin.com/in/arpitramesan/
 - Instagram: https://www.instagram.com/arpitrofficial/
   
-Thank you for considering the Webpage Catalogue. I look forward to helping you create an outstanding online presence!
+Thank you for considering the Webpage Catalogue. 
+I look forward to helping you create an outstanding online presence!
