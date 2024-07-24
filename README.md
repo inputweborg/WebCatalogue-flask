@@ -12,6 +12,9 @@ git clone https://github.com/arktrek/webpage-catalogue.git
 ```
 Browse through the templates and choose the one that best fits your needs. Each template comes with easy-to-follow instructions for customization and implementation.
 
+## Version Updates Format
+incomplete/complete - sector name - version number(in terms of 100)
+
 ## Let's Work Together
 If you’re interested in a custom design or need help implementing these templates, I’d love to work with you! I offer tailored design solutions and support to ensure your website is both stunning and effective.
 
