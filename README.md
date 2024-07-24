@@ -15,13 +15,21 @@ Browse through the templates and choose the one that best fits your needs. Each 
 ## Let's Work Together
 If you’re interested in a custom design or need help implementing these templates, I’d love to work with you! I offer tailored design solutions and support to ensure your website is both stunning and effective.
 
+## Services
+- Website Design
+- Page Maintainence
+- Backend & Frontend Support
+
 ## Contact Me
 For collaboration, inquiries, or support, reach out to me directly:
 
-```Email:
-arpitramesan777@gmail.com
 ```
-```Instagram:
-@arpitrofficial
+Email: arpitramesan777@gmail.com
+```
+```
+LinkedIn: [arpitramesan](https://www.linkedin.com/in/arpitramesan/)
+```
+```
+Instagram: [arpitr](https://www.instagram.com/arpitrofficial/)
 ```
 Thank you for considering the Webpage Catalogue. I look forward to helping you create an outstanding online presence!
