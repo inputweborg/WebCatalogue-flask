@@ -27,15 +27,12 @@ For collaboration, inquiries, or support, reach out to me directly:
   ```
   arpitramesan777@gmail.com
 ```
-```
 - LinkedIn:
-  ```
-  [arpitramesan](https://www.linkedin.com/in/arpitramesan/)
 ```
+https://www.linkedin.com/in/arpitramesan/
 ```
 - Instagram:
-  ```
-  [arpitr](https://www.instagram.com/arpitrofficial/)
 ```
+https://www.instagram.com/arpitrofficial/
 ```
 Thank you for considering the Webpage Catalogue. I look forward to helping you create an outstanding online presence!
