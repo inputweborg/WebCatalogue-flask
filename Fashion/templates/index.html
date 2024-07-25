@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+    <h1>Welcome to Fashion Brand</h1>
+    <p>Discover the latest trends and exclusive collections. Stay stylish with our curated selection of fashion items.</p>
+    <a href="{{ url_for('collections') }}" class="button">Shop Now</a>
+</section>
+<section id="home">
+    <h2>Featured Collections</h2>
+    <p>Explore our top picks for the season and find your perfect style.</p>
+    <!-- Include a carousel or featured collections here -->
+</section>
+{% endblock %}

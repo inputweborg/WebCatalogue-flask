@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Brand</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #ffffff;
+            color: #333;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #000;
+        }
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #ffffff;
+            color: #333;
+            text-align: center;
+            padding: 1rem 2rem;
+            border-top: 1px solid #e0e0e0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .logo {
+            max-width: 150px;
+            margin: 0 auto;
+            display: block;
+        }
+        section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #000;
+            text-transform: uppercase;
+        }
+        p {
+            margin-bottom: 1.5rem;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid #333;
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 400px;
+            background-image: url('{{ url_for('static', filename='img/hero.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        /* Loading Screen Styles */
+        .loading-screen {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .loading-screen.active {
+            display: flex;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #333;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="spinner"></div>
+    </div>
+    <header>
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('collections') }}">Collections</a></li>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Fashion Brand. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const links = document.querySelectorAll('nav ul li a');
+
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    loadingScreen.classList.add('active');
+                });
+            });
+
+            window.addEventListener('pageshow', function() {
+                loadingScreen.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
