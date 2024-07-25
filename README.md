@@ -8,7 +8,7 @@ Curated by Arpit R, these designs are perfect for businesses looking to stand ou
 To access the catalogue, simply clone this repository using the following command:
 
 ```bash
-git clone https://github.com/arktrek/webpage-catalogue.git
+https://github.com/ArkTrek/Webpage-Catalogue.git
 ```
 Browse through the templates and choose the one that best fits your needs. Each template comes with easy-to-follow instructions for customization and implementation.
 
