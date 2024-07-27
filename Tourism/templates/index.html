@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agency</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="initial-background"></div>
+    <div id="hover-background"></div>
+    
+    <div id="logo-container">
+        <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <h1>Travel Agency</h1>
+    </div>
+
+    <div id="container" class="waterfall"> <!-- Default background -->
+        <div id="description">Explore the serene beauty of majestic waterfalls.</div>
+        <div id="buttons-container">
+            <button id="waterfall-btn">Waterfalls</button>
+            <button id="hill-btn">Hill Spots</button>
+            <button id="beautiful-btn">Beautiful Areas</button>
+        </div>
+        <!-- New Contact Section -->
+        <div id="contact-section">
+            <h2>Contact Us</h2>
+            <p>For More Info...
+                Mail:<a href="mailto:info@travelagency.com">info@travelagency.com</a>
+                Call:<a href="tel:+1234567890">+1234567890</a></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

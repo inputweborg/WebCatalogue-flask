@@ -1,0 +1,216 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background: #f0f0f0; /* Light background color for simplicity */
+}
+
+#logo-container {
+    position: fixed;
+    top: 30px; /* Distance from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1000;
+    color:aliceblue;
+    font-size:2.5em;
+    font-family: 'Oswald';
+}
+
+#logo {
+    width: 75px; /* Slightly smaller logo for a cleaner look */
+    height: 75px;
+}
+
+#logo h1 {
+    margin: 10px;
+    font-size: 50px; /* Reduced font size */
+    font-family: 'oswald'; /* Clean font */
+    color: #c5c5c5; /* Darker color for better contrast */
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease; /* Smooth transition for background image */
+}
+
+#description {
+    position: fixed;
+    top: 50%; /* Center vertically */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    color: #f5f5f5; /* Darker color for better contrast */
+    font-size: 24px; /* Slightly reduced font size */
+    text-align: center;
+    width: 60%;
+    line-height: 1.5; /* Improved readability */
+    padding: 0 20px; /* Space on left and right */
+    opacity: 0; /* Start hidden */
+    transition: opacity 1s ease; /* Smooth fade-in transition */
+}
+
+#buttons-container {
+    position: fixed;
+    bottom: 20px; /* Position buttons closer to the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px; /* Spacing between buttons */
+    justify-content: center;
+}
+
+button {
+    width: 180px; /* Longer horizontally */
+    height: 60px; /* Height adjusted for a more rectangular look */
+    border: none;
+    border-radius: 30px; /* More rounded corners */
+    font-size: 18px; /* Larger font size */
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    padding: 10px; /* Space between text and button border */
+    box-sizing: border-box; /* Ensures padding does not affect overall button size */
+    background: rgba(0, 0, 0, 0.1); /* Very light background color for simplicity */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+button:focus {
+    outline: none;
+}
+
+button#waterfall-btn {
+    background: linear-gradient(135deg, #00aaff, #0099cc);
+    font-family: 'Oswald'; /* Unique font */
+}
+
+button#hill-btn {
+    background: linear-gradient(135deg, #7d5a50, #6a4f48);
+    font-family: 'Verdana', sans-serif; /* Unique font */
+}
+
+button#beautiful-btn {
+    background: linear-gradient(135deg, #ff9a00, #ff5e00);
+    font-family: 'Times New Roman', serif; /* Unique font */
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+.waterfall {
+    background-image: url('/static/images/waterfall/1.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hill {
+    background-image: url('/static/images/hill/1.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.beautiful {
+    background-image: url('/static/images/beautiful areas/1.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Gradient animation */
+@keyframes gradientMove {
+    0% {
+        background: linear-gradient(135deg, #ff0099, #493240);
+    }
+    25% {
+        background: linear-gradient(135deg, #00ff99, #004d00);
+    }
+    50% {
+        background: linear-gradient(135deg, #0099ff, #004d4d);
+    }
+    75% {
+        background: linear-gradient(135deg, #ffcc00, #660000);
+    }
+    100% {
+        background: linear-gradient(135deg, #ff0099, #493240);
+    }
+}
+
+#initial-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #a3efaa, #062e19);
+    filter: blur(8px); /* Slightly reduced blur for simplicity */
+    z-index: 0; /* Behind all other elements */
+}
+
+/* Hover effect */
+#hover-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* Lighter hover effect */
+    z-index: -1;
+    pointer-events: none;
+    transition: background 0.5s ease;
+}
+
+
+/* Existing CSS rules... */
+
+#buttons-container {
+    position: fixed;
+    bottom: 200px; /* Move buttons up to make space for the contact section */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px; /* Spacing between buttons */
+    justify-content: center;
+}
+
+#contact-section {
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7); /* Dark background for contact section */
+    color: #fff;
+    padding: 15px 45px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px; /* Width of contact section */
+}
+
+#contact-section h2 {
+    margin: 0 0 0.5em 0;
+    font-size: 20px; /* Font size for the heading */
+}
+
+#contact-section p {
+    margin: 5;
+    font-size: 16px; /* Font size for the paragraph */
+}
+
+#contact-section a {
+    color: #fff18b; /* Bright color for links */
+    text-decoration: none;
+    margin:0.5em;
+}
+
+#contact-section a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
