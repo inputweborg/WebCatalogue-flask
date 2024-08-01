@@ -13,6 +13,11 @@
             font-family: Arial, sans-serif;
             color: white;
         }
+    
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         .header {
             text-align: center;
@@ -83,13 +88,11 @@
 
         .section#works {
             background: linear-gradient(to top, #00008B, #87CEEB);
-            padding: 20px;
             position: relative;
-            text-align: left;
             color: #ffffff;
         }
 		
-		.section#stack-it-up {
+		.section#contact {
 			background-image: url('{{ background_image_url }}');
 			background-size: cover;
             background-repeat: no-repeat;
@@ -190,10 +193,10 @@
 
         .about-me-header{
             font-family: 'Oswald', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3.5em;
             color: white;
             text-align: left;
-            margin: 30px 0;
+            margin: 25px 0;
             position: absolute;
             top: 20px;
             left: 190px;
@@ -204,13 +207,27 @@
 
         .works-header {
             font-family: 'Oswald', sans-serif;
-            font-size: 2.8rem;
-            color: white;
+            font-size: 3.8em;
+            color: #010e24;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            opacity: 1;
+            transition: opacity 0.75s;
+            letter-spacing: 0.2em;
+            clear: both;
+        }
+
+        .contact-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.8em;
+            color: #09064a;
             text-align: left;
             margin: 30px 0;
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: 140px;
+			vertical-align: center;
             opacity: 1;
             transition: opacity 0.75s;
             letter-spacing: 0.07em;
@@ -259,22 +276,30 @@
                 opacity: 1;
             }
         }
-
-        .arrow {
-            display: none;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid #01053d;
+        .to-top {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            transition: opacity 0.3s;
-			animation: bounce;
-			animation-duration: 2s;
+            right: 20px;
+            display: none; /* Initially hidden */
+            width: 50px;
+            height: 50px;
+            background-color: #b3f5ff;
+            color: #020336;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.75em;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: opacity 0.3s, visibility 0.2s;
+        }
+
+        .to-top.show {
+            display: block;
+        }
+        
+        .to-top:hover {
+            background-color: #1a0a69;
+            color: #b3f5ff;
         }
 		
 		.project-tree {
@@ -283,6 +308,21 @@
 			flex-wrap: wrap;
 			margin-top: 20px;
 		}
+
+
+    
+        @keyframes ripple {
+            0% {
+                width: 25px;
+                height: 25px;
+                opacity: 1;
+            }
+            100% {
+                width: 35px;
+                height: 35px;
+                opacity: 0;
+            }
+        }
 
 		.project-node {
 			background-color: rgba(224, 242, 255, 0.9);
@@ -309,34 +349,243 @@
 			border-radius: 10px;
 			margin-bottom: 10px;
 		}
+        
+        .goo {
+            position: absolute;
+            top: 0;
+        }
+    
+        .ink-cursor {
+            position: fixed;
+            display: block;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            filter: url("#goo");
+        }
+    
+        .ink-cursor span {
+            position: absolute;
+            display: block;
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            background-color: #282828;
+        }
+    
+        @media (max-width: 991px) {
+            .ink-cursor span {
+                display: none;
+            }
+        }
 
-		.works-header {
-			opacity: 0; /* Initially hidden for scrolling effect */
-			transition: opacity 0.75s;
-			color: #080e45;
-		}
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var toTop = document.getElementById("toTop");
+        
+            window.onscroll = function() {
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    toTop.classList.add("show");
+                } else {
+                    toTop.classList.remove("show");
+                }
+            };
+        
+            toTop.addEventListener("click", function(event) {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+
+        let cursorInit = !1;
+        const cursor = document.getElementById("ink-cursor"),
+            amount = 20,
+            sineDots = Math.floor(.5 * amount),
+            width = 25,
+            idleTimeout = 150;
+        let timeoutID,
+            hoverButton,
+            hoverTL,
+            lastFrame = 0,
+            mousePosition = {
+                x: 0,
+                y: 0
+            },
+            dots = [],
+            idle = !1;
+        class HoverButton {
+            constructor(e) {
+                (this.hovered = !1),
+                (this.animatingHover = !1),
+                (this.forceOut = !1),
+                (this.timing = 0.65),
+                (this.el = document.getElementById(e));
+            }
+            onMouseEnter() {
+                this.hoverInAnim();
+            }
+            hoverInAnim() {
+                this.hovered ||
+                ((this.hovered = !0),
+                (this.animatingHover = !0),
+                (this.forceOut = !1),
+                TweenMax.fromTo(
+                    this.bg,
+                    this.timing,
+                    {
+                        x: "-112%"
+                    },
+                    {
+                        x: "-12%",
+                        ease: Power3.easeOut,
+                        onComplete: () => {
+                            (this.animatingHover = !1),
+                            this.forceOut && ((this.foceOut = !1), this.hoverOutAnim());
+                        }
+                    }
+                ));
+            }
+            onMouseLeave() {
+                this.animatingHover ? (this.forceOut = !0) : this.hoverOutAnim();
+            }
+            hoverOutAnim() {
+                (this.hovered = !1),
+                TweenMax.to(this.bg, this.timing, {
+                    x: "100%",
+                    ease: Power3.easeOut,
+                    onComplete: () => {}
+                });
+            }
+        }
+        class Dot {
+            constructor(e = 0) {
+                (this.index = e),
+                (this.anglespeed = 0.05),
+                (this.x = 0),
+                (this.y = 0),
+                (this.scale = 1 - 0.05 * e),
+                (this.range = width / 2 - width / 2 * this.scale + 2),
+                (this.limit = 0.75 * width * this.scale),
+                (this.element = document.createElement("span")),
+                TweenMax.set(this.element, {
+                    scale: this.scale
+                }),
+                cursor.appendChild(this.element);
+            }
+            lock() {
+                (this.lockX = this.x),
+                (this.lockY = this.y),
+                (this.angleX = 2 * Math.PI * Math.random()),
+                (this.angleY = 2 * Math.PI * Math.random());
+            }
+            draw(e) {
+                !idle || this.index <= sineDots
+                ? TweenMax.set(this.element, {
+                    x: this.x,
+                    y: this.y
+                })
+                : ((this.angleX += this.anglespeed),
+                (this.angleY += this.anglespeed),
+                (this.y = this.lockY + Math.sin(this.angleY) * this.range),
+                (this.x = this.lockX + Math.sin(this.angleX) * this.range),
+                TweenMax.set(this.element, {
+                    x: this.x,
+                    y: this.y
+                }));
+            }
+        }
+        class Circle {
+            constructor(e) {
+                const t = document.getElementById(e);
+                t.parentElement.removeChild(t);
+            }
+        }
+        function init() {
+            window.addEventListener("mousemove", onMouseMove),
+            window.addEventListener("touchmove", onTouchMove),
+            (hoverButton = new HoverButton("button")),
+            (lastFrame += new Date()),
+            buildDots(),
+            render();
+        }
+        function startIdleTimer() {
+            (timeoutID = setTimeout(goInactive, idleTimeout)), (idle = !1);
+        }
+        function resetIdleTimer() {
+            clearTimeout(timeoutID), startIdleTimer();
+        }
+        function goInactive() {
+            idle = !0;
+            for (let e of dots) e.lock();
+        }
+        function buildDots() {
+            for (let e = 0; e < amount; e++) {
+                let t = new Dot(e);
+                dots.push(t);
+            }
+        }
+        const onMouseMove = e => {
+                (mousePosition.x = e.clientX - width / 2),
+                (mousePosition.y = e.clientY - width / 2),
+                resetIdleTimer();
+            },
+            onTouchMove = () => {
+                (mousePosition.x = event.touches[0].clientX - width / 2),
+                (mousePosition.y = event.touches[0].clientY - width / 2),
+                resetIdleTimer();
+            },
+            render = e => {
+                positionCursor(e - lastFrame),
+                (lastFrame = e),
+                requestAnimationFrame(render);
+            },
+            positionCursor = e => {
+                let t = mousePosition.x,
+                    i = mousePosition.y;
+                dots.forEach((o, s, n) => {
+                    let h = n[s + 1] || n[0];
+                    if (((o.x = t), (o.y = i), o.draw(e), !idle || s <= sineDots)) {
+                        const e = 0.35 * (h.x - o.x),
+                            s = 0.35 * (h.y - o.y);
+                        (t += e), (i += s);
+                    }
+                });
+            },
+            inkTablet = window.matchMedia("(max-width: 991px)"),
+            inkMobile = window.matchMedia("(max-width: 479px)"),
+            inkMediaObserver = () => {
+                inkMobile.matches ||
+                inkTablet.matches ||
+                cursorInit ||
+                ((cursorInit = !0), init());
+            };
+        inkMediaObserver(),
+        inkTablet.addListener(inkMediaObserver),
+        inkMobile.addListener(inkMediaObserver);
+        
+    </script>
+
 </head>
 
 <body>
     <header class="header">
         PORTFOLIO
     </header>
-    <div class="section" id="landing">
+   <div class="section" id="landing">
         <div class="buttons">
-            <span class="button" id="aboutMeButton">ABOUT ME</span>
-            <span class="button" id="worksButton">WORKS</span>
-            <span class="button">CONTACT</span>
+            <a class="button" id="aboutMeButton" href="#aboutme">ABOUT ME</a>
+            <a class="button" id="worksButton" href="#works">WORKS</a>
+            <a class="button" id="contactButton" href="#contact">CONTACT</a>
         </div>
         <h1 class="programmer-text">
-            <span class="letter">P</span>
-            <span class="letter">R</span>
+            <span class="letter">D</span>
+            <span class="letter">E</span>
+            <span class="letter">V</span>
+            <span class="letter">E</span>
+            <span class="letter">L</span>
             <span class="letter">O</span>
-            <span class="letter">G</span>
-            <span class="letter">R</span>
-            <span class="letter">A</span>
-            <span class="letter">M</span>
-            <span class="letter">M</span>
+            <span class="letter">P</span>
             <span class="letter">E</span>
             <span class="letter">R</span>
         </h1>
@@ -380,94 +629,24 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="section" id="stack-it-up">
-		<h2 class="stack-it-up-header">STACK IT UP</h2>
+	<div class="section" id="contact">
+		<h2 class="contact-header">CONTACT</h2>
 		
 	</div>
 	
 	<div class="arrow" id="topArrow"></div>
+    <a href="#" id="toTop" class="to-top">&#10514;</a>
+    <div id="ink-cursor" class="ink-cursor"></div>
 
-	<script>
-		// Smooth scroll to "ABOUT ME" section
-		document.getElementById('aboutMeButton').addEventListener('click', function () {
-			const aboutMeSection = document.getElementById('aboutme');
-			aboutMeSection.scrollIntoView({ behavior: 'smooth' });
-		});
+    <svg xmlns="https://www.w3.org/2000/svg" class="goo" version="1.1" width="100%">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo"></feColorMatrix>
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
+            </filter>
+        </defs>
+    </svg>
 
-		// Smooth scroll to "WORKS" section
-		document.getElementById('worksButton').addEventListener('click', function () {
-			const worksSection = document.getElementById('works');
-			worksSection.scrollIntoView({ behavior: 'smooth' });
-		});
-
-		// Shadow effect for each section
-		document.querySelectorAll('.section').forEach(section => {
-			section.addEventListener('mousemove', (event) => {
-				const rect = section.getBoundingClientRect();
-				const x = event.clientX - rect.left;
-				const y = event.clientY - rect.top;
-				section.style.boxShadow = ${(x - rect.width / 2) / 10}px ${(y - rect.height / 2) / 10}px 30px rgba(135, 206, 235, 0.8), inset 0 0 15px rgba(135, 206, 235, 0.5);
-			});
-		});
-
-		// Scroll event for the arrow
-		const topArrow = document.getElementById('topArrow');
-		window.addEventListener('scroll', function () {
-			if (window.scrollY > window.innerHeight) {
-				topArrow.style.display = 'block';
-				topArrow.style.opacity = '1';
-			} else {
-				topArrow.style.display = 'none';
-				topArrow.style.opacity = '0';
-			}
-		});
-
-		// Scroll to top function
-		topArrow.addEventListener('click', function () {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-		});
-
-		// Description text animation
-		const profileDescription = document.querySelector('.profile-description');
-		const descriptionText = profileDescription.querySelector('p');
-
-		descriptionText.innerHTML = descriptionText.textContent.split('').map((char, index) => {
-			if (char === ' ') return '&nbsp;';
-			if (char === '\n') return '<br>';
-			return <span>${char}</span>;
-		}).join('');
-
-		const letters = descriptionText.querySelectorAll('span');
-		letters.forEach((letter, index) => {
-			letter.style.opacity = 0;
-			letter.style.animation = fadeIn 0.5s forwards;
-			letter.style.animationDelay = ${index * 0.05}s;
-		});
-
-		// Fade in and out for section headers
-		document.addEventListener('scroll', function () {
-			const aboutMeHeader = document.querySelector('.about-me-header');
-			const worksHeader = document.querySelector('.works-header');
-			const section2 = document.querySelector('#aboutme');
-			const section3 = document.querySelector('#works');
-			const section2Rect = section2.getBoundingClientRect();
-			const section3Rect = section3.getBoundingClientRect();
-			const windowHeight = window.innerHeight;
-
-			if (section2Rect.top <= windowHeight && section2Rect.bottom >= 0) {
-				const opacity = Math.min(1, 1 - (section2Rect.top / windowHeight));
-				aboutMeHeader.style.opacity = opacity;
-				profileDescription.style.opacity = opacity;
-				profileDescription.style.transform = translateY(${20 * (1 - opacity)}px);
-			}
-
-			if (section3Rect.top <= windowHeight && section3Rect.bottom >= 0) {
-				const opacity = Math.min(1, 1 - (section3Rect.top / windowHeight));
-				worksHeader.style.opacity = opacity;
-			}
-		});
-	</script>
 </body>
-
 </html>
