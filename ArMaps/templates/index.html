@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AM</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Content Security Policy to mitigate XSS attacks -->
+    
+    <link rel="stylesheet" href="static/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+    <div class="header">Ar Maps</div>
+    <div id="map"></div>
+    <button class="google-button" onclick="toggleInputContainer()">G</button>
+    <div class="input-container" id="inputContainer">
+        <input type="text" id="googleMapsUrl" placeholder="Enter Google Maps URL" />
+        <button onclick="addGoogleMapsLocation()">Add Location</button>
+        <button onclick="toggleInputContainer()">Close</button>
+    </div>
+    <div class="footer">© Copyright Reserved - <a href="mailto:arpitramesan777@gmail.com">The Tinkerer</a></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="static/script.js"></script>
+</body>
+</html>
