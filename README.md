@@ -1,7 +1,7 @@
 # Webpage Catalogue - Flask Based
 
 Welcome to the Webpage Catalogue, a collection of sleek, modern, and user-friendly webpage templates designed to enhance your online presence. 
-Curated by Arpit R, these designs are perfect for businesses looking to stand out and attract more customers.
+Curated by Input Web, these designs are perfect for businesses looking to stand out and attract more customers.
 
 ## Accessing the Catalogue
 
