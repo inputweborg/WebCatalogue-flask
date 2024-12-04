@@ -23,10 +23,10 @@ If you’re interested in a custom design or need help implementing these templa
 - Page Maintainence
 - Backend & Frontend Support
 
-## Contact Me
-For collaboration, inquiries, or support, reach out to me directly:
-
+## Contact Us
+For collaboration, inquiries, or support, reach out to us at:
 - Email: inputwebm@gmail.com
+- Instagram: https://www.instagram.com/inputweb/
   
-Thank you for considering the Webpage Catalogue. 
-I look forward to helping you create an outstanding online presence!
+Thank you for considering our Webpage Catalogue. 
+We look forward to helping you create an outstanding online presence!
